@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #F7E8D5;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #F6CA93;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    position: sticky; /* Add this */
+    top: 0; /* Add this */
+    z-index: 1000; /* Add this to ensure header stays above other content */
+}
+
+.logo{
+    margin-left:40px;
+}
+
+.searchBar {
+    margin-left: 200px;
+    width: 100px;
+    height: 40px;
+}
+
+#magGlassIcon {
+    position: absolute;
+    z-index: 2;
+}
+
+#search {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    width: 650px;
+    height: 60px;
+    position: absolute;
+    top: 30px;
+    left:440px;
+    z-index: 1;
+    text-indent: 60px;
+}
+
+#cart {
+    position: absolute;
+    right: 10px;
+}
+
+#signInUp {    
+    position: absolute;
+    right:10px;
+}
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Main Content */
+.main-container {
+    position: relative;
+    display: flex;
+    z-index: 1;
+}
+
+/* Filter Section */
+#filter-container {
+    position: fixed;
+    top: 125px;
+    width: 350px;
+    height: 630px;
+    background-color: #FFFAF4;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 10;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+#filter-container.show {
+    opacity: 1;
+    display: block;
+}
+
+.filter-section {
+    margin-bottom: 25px;
+}
+
+.filter-section h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #FFFAF4;
+    font-weight: 600;
+}
+
+.filter-options {
+    list-style: none;
+}
+
+.filter-options li {
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter-options li:hover {
+    color: #007bff;
+}
+
+.filter-options li.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.checkbox-group {
+    margin-top: 8px;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.checkbox-option input {
+    margin-right: 8px;
+}
+
+.price-range {
+    align-items: center;
+    margin-top: 8px;
+}
+
+#priceSlider {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin: 10px 0;
+}
+
+.slider-value {
+  background: #F6CA93;
+  color: black;
+  width: 30px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: none;
+  z-index: 12;
+}
+
+#priceSlider:hover + .slider-value {
+  display: block;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #434b53;
+    margin: 20px 0;
+}
+
+/* Product Section */
+.product-container {
+    flex: 1;
+    background-color: #F7E8D5;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #212529;
+}
+
+.product-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #495057;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.availability {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.checkout {
+    padding: 10px 20px;
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.spec-icons {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+    color: #6c757d;
+    padding-top: 15px;
+}
