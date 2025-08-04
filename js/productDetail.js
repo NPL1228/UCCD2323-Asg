@@ -6,17 +6,7 @@ menuBtn.addEventListener('click', function() {
 });
 
 //testing
-const cartBtn = document.getElementById("cartIcon")
-cartBtn.addEventListener('click', function() {
-    console.log('Clicked');
-    console.log(document.getElementById('signInUp')); // Should log the element
-    console.log(document.getElementById('cart')); // Should log the element
-    document.getElementById('signInUp').classList.toggle('hidden');
-    document.getElementById('cart').classList.toggle('hidden');
-
-
-});
-const signInBtn = document.getElementById("signIn")
+const profileBtn = document.getElementById("profile")
 signInBtn.addEventListener('click', function() {
     console.log('Clicked');
     document.getElementById('signInUp').classList.toggle('hidden');
