@@ -38,20 +38,20 @@ body {
 #magGlassIcon {
     position: absolute;
     z-index: 2;
-    top: 35px;
-    left: 820px;
+    top: 38px;
+    left: 910px;
 }
 
 #search {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: large;
-    width: 550px;
-    height: 60px;
+    width: 450px;
+    height: 40px;
     position: absolute;
-    top: 20px;
-    left:800px;
+    top: 30px;
+    left: 900px;
     z-index: 1;
-    text-indent: 60px;
+    text-indent: 40px;
     border-radius: 10px;
 }
 
@@ -81,6 +81,54 @@ body {
     display: flex;
     z-index: 1;
 }
+
+.categories{
+    display: flex;
+    margin: 40px;
+}
+
+#cat1 {
+    width: 350px;
+    height: 610px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+#cat2 {
+    width: 350px;
+    height: 400px;
+    background-color: black;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+#cat3 {
+    width: 350px;
+    height:200px;
+    background-color: black;
+    border-radius: 10px;
+    margin-top: 410px;
+    margin-left: -350px;
+}
+
+#cat4 {
+    width: 350px;
+    height:200px;
+    background-color: black;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+#cat5 {
+    width: 350px;
+    height: 400px;
+    background-color: black;
+    border-radius: 10px;
+    margin-top: 210px;
+    margin-left: -350px;
+}
+
+
 
 /* Filter Section */
 #filter-container {
