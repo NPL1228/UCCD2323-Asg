@@ -3,55 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Store</title>
+    <title>Products-PickPuzz</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+        .productContainer {
+            flex: 1;
+            background-color: #F7E8D5;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .productName {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+
+        .productPrice {
+            font-size: 22px;
+            font-weight: bold;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        .quantityControl {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .quantityBtn {
+            width: 30px;
+            height: 30px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #495057;
+        }
+
+        .quantityInput {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .availability {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .actionButtons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .addToCart {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .checkout {
+            padding: 10px 20px;
+            background-color: white;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .specIcons {
+            display: flex;
+            justify-content: space-around;
+            font-size: 24px;
+            color: #6c757d;
+            padding-top: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-                <div class="menu">
-            <img id="menuIcon" src="picture/menu.png" alt="menu" width="30px" height="30px">
+        <div class="menu">
+            <img id="menuIcon" src="picture/menu.png" alt="menu" width="40px" height="40px">
         </div>
         <div class="logo">
             <img id="logoIcon" src="picture/logo2c.png" alt="logo" width="140px" height="75px">
         </div>
         <div class="searchBar">
-            <img id="magGlassIcon" src="picture/magGlass.png" alt="magGlass" width="30px" height="30px">
+            <img id="magGlassIcon" src="picture/magGlass.png" alt="magGlass" width="25px" height="25px">
             <input id="search" type="text" placeholder="search for product">
         </div>
 
         <div id="cart">
-            <img id="cartIcon" src="picture/cart.png" alt="cart" width="70px" height="45px">
+            <img id="cartIcon" src="picture/cart.png" alt="cart" width="45px" height="45px">
         </div>        
         <div id="profile">
-            <img src="picture/profile.png" alt="profile" width="40px" height="40px">
+            <img src="picture/profile.png" alt="profile" width="45px" height="45px">
         </div>
     </div>
     
     
     
 
-    <div class="main-container">
+    <div class="mainContainer">
         
-        <div class="product-container">
-            <div class="product-name">Premium 3D Puzzle - Eiffel Tower</div>
-            <div class="product-price">RM100.00</div>
+        <div class="productContainer">
+            <div class="productName">Premium 3D Puzzle - Eiffel Tower</div>
+            <div class="productPrice">RM100.00</div>
             
-            <div class="quantity-control">
-                <button class="quantity-btn minus">-</button>
-                <input type="number" class="quantity-input" value="1" min="1" max="22" placeholder="qty">
-                <button class="quantity-btn plus">+</button>
+            <div class="quantityControl">
+                <button class="quantityBtn minus">-</button>
+                <input type="number" class="quantityInput" value="1" min="1" max="22" placeholder="qty">
+                <button class="quantityBtn plus">+</button>
             </div>
             
             <div class="availability">22 items available</div>
             
-            <div class="action-buttons">
-                <button class="add-to-cart">Add to cart</button>
+            <div class="actionButtons">
+                <button class="addToCart">Add to cart</button>
                 <button class="checkout">Checkout</button>
             </div>
             
             <div class="divider"></div>
             
-            <div class="spec-icons">
+            <div class="specIcons">
                 <div>⏱️</div>
                 <div>🧩</div>
                 <div>🏗️</div>
@@ -83,15 +175,265 @@
                     fenfkjewvnskjbvjkrbv<br>
                     fenfkjewvnskjbvjkrbv<br>
                     fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
+                    fenfkjewvnskjbvjkrbv<br>
                 </p>
             </div>
         </div>
     </div>
 
-    <div id="filter-container">
-        <div class="filter-section">
+        <div id="filterContainer">
+        <div class="filterSection">
             <h2>Product category</h2>
-            <ul class="filter-options">
+            <ul class="filterOptions">
                 <li class="active">All Product</li>
                 <li>New Arrival</li>
                 <li>2D puzzle</li>
@@ -100,50 +442,50 @@
             </ul>
         </div>
         
-        <div class="filter-section">
+        <div class="filterSection">
             <h2>Material</h2>
-            <div class="checkbox-group">
-                <div class="checkbox-option">
+            <div class="checkboxGroup">
+                <div class="checkboxOption">
                     <input type="checkbox" id="wood">
                     <label for="wood">Wood</label>
                 </div>
-                <div class="checkbox-option">
+                <div class="checkboxOption">
                     <input type="checkbox" id="plastic">
                     <label for="plastic">Plastic</label>
                 </div>
-                <div class="checkbox-option">
+                <div class="checkboxOption">
                     <input type="checkbox" id="metal">
                     <label for="metal">Metal</label>
                 </div>
-                <div class="checkbox-option">
+                <div class="checkboxOption">
                     <input type="checkbox" id="cardboard">
                     <label for="cardboard">Cardboard</label>
                 </div>
             </div>
         </div>
         
-        <div class="filter-section">
+        <div class="filterSection">
             <h2>Price</h2>
-            <div class="price-range">
+            <div class="priceRange">
                 <label for="priceSlider">Price between 10 and 1000</label>
                 <input type="range" id="priceSlider" name="price" min="10" max="1000">
-                <span class="slider-value">50</span>
+                <span class="sliderValue">50</span>
 
             </div>
         </div>
         
-        <div class="filter-section">
+        <div class="filterSection">
             <h2>Pieces</h2>
-            <div class="checkbox-group">
-                <div class="checkbox-option">
+            <div class="checkboxGroup">
+                <div class="checkboxOption">
                     <input type="checkbox" id="100-500">
                     <label for="100-500">100-500 pieces</label>
                 </div>
-                <div class="checkbox-option">
+                <div class="checkboxOption">
                     <input type="checkbox" id="500-1000">
                     <label for="500-1000">500-1000 pieces</label>
                 </div>
-                <div class="checkbox-option">
+                <div class="checkboxOption">
                     <input type="checkbox" id="1000+">
                     <label for="1000+">1000+ pieces</label>
                 </div>
@@ -151,6 +493,50 @@
         </div>
     </div>
 
+    <footer>
+        <div class="footInfo">
+            <div class="footTitle">
+                <p>PickPuzz</p>
+            </div>
+            <p>Transforming spaces and lives through the ancient wisdom of Feng Shui.</p>
+        </div>
+
+        <div class="footInfo">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+
+        <div class="footInfo">
+            <h4>Our Products</h4>
+            <ul>
+                <li><a href="courseDetails.html">Money Magnet</a></li>
+                <li><a href="courses.html">View All Courses</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footInfo" id="contact">
+            <h4>Contact Us</h4>
+            <ul>
+                <li>
+                    <a href="mailto:pickpuzz@example.com">pickpuzz@example.com</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footInfo">
+            <p>&copy; 2025 Puzzle Store. All rights reserved.</p>
+            <p>Contact us: <a href="mailto: pickpuzz@example.com">pickpizz@example.com</a>
+       
+        </div>
+
+    </footer>
 
     <script src="js/productDetail.js""></script>
 </body>
