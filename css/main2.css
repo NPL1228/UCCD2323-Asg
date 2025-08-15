@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #F6CA93;
+    color: white;
+    padding: 15px 20px;
+}
+
+#search {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    width:400px;
+    height: 60px;
+    text-indent: 30px;
+}
+
+#signInUp {    
+    position: absolute;
+    right:10px;
+}
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Main Content */
+.main-container {
+    position: relative;
+    display: flex;
+    z-index: 1;
+}
+
+/* Filter Section */
+#filter-container {
+    position: fixed;
+    top: 125px;
+    width: 350px;
+    height: 630px;
+    background-color: #FFFAF4;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 10;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+#filter-container.show {
+    opacity: 1;
+    display: block;
+}
+
+.filter-section {
+    margin-bottom: 25px;
+}
+
+.filter-section h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #FFFAF4;
+    font-weight: 600;
+}
+
+.filter-options {
+    list-style: none;
+}
+
+.filter-options li {
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter-options li:hover {
+    color: #007bff;
+}
+
+.filter-options li.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.checkbox-group {
+    margin-top: 8px;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.checkbox-option input {
+    margin-right: 8px;
+}
+
+.price-range {
+    align-items: center;
+    margin-top: 8px;
+}
+
+#priceSlider {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin: 10px 0;
+}
+
+.slider-value {
+  background: #F6CA93;
+  color: black;
+  width: 30px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: none;
+  z-index: 12;
+}
+
+#priceSlider:hover + .slider-value {
+  display: block;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #434b53;
+    margin: 20px 0;
+}
