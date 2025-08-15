@@ -5,92 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-PickPuzz</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <style>
-        .heroSection {
-            display: flex;
-            justify-content: center; /* Horizontal center */
-            align-items: center;     /* Vertical center */
-            margin-top: 20px;
-        }
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
-        .categories{
-            display: flex;
-            margin: 40px;
-        }
-
-        #cat1 {
-            width: 350px;
-            height: 610px;
-            background-color: black;
-            border-radius: 10px;
-        }
-
-        #cat2 {
-            width: 350px;
-            height: 400px;
-            background-color: black;
-            border-radius: 10px;
-            margin-left: 20px;
-        }
-
-        #cat3 {
-            width: 350px;
-            height:200px;
-            background-color: black;
-            border-radius: 10px;
-            margin-top: 410px;
-            margin-left: -350px;
-        }
-
-        #cat4 {
-            width: 350px;
-            height:200px;
-            background-color: black;
-            border-radius: 10px;
-            margin-left: 20px;
-        }
-
-        #cat5 {
-            width: 350px;
-            height: 400px;
-            background-color: black;
-            border-radius: 10px;
-            margin-top: 210px;
-            margin-left: -350px;
-        }
-
-        .aboutUsMain {
-            max-width: 800px; /* Limit width for better readability */
-            text-align: center; /* Center text */
-            margin: 20px auto; /* Center the section */
-            font-size: 20px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-
-        .aboutUs p {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-
-        .aboutUs h1 {
-            margin-bottom: 30px;
-            font-size: 40px;
-        }
-
-        .aboutUs h2 {
-            margin-bottom: 20px;
-        }
-        .subAboutUs {
-            display: flex;
-            margin: 20px;
-        }
-
-        .aboutUsText {
-            background-color: #ffdaad;
-            border-radius: 10px;
-            padding: 100px;
-            font-size: 20px;
-        }
-    </style>
 </head>
 <body>
     <div class="header">
@@ -138,36 +54,7 @@
             
             </div>
         </div>
-        <hr>
-        <div class="aboutUs">
-            <div class="aboutUsMain">
-                <h1>About Us</h1>
-                <p>We are a team of puzzle enthusiasts dedicated to bringing you the best selection of puzzles from around the world. Our mission is to provide high-quality puzzles that challenge and entertain.</p>
-                <p>Whether you're a beginner or a seasoned puzzler, we have something for everyone. Explore our collection and find your next favorite puzzle!</p>
-                <br>
-            </div>
-            <div class="subAboutUs" id="vision">
-                <img src="picture/vision.png" alt="Vision" width="720px" height="1000px">
-                <div class="aboutUsText">
-                    <h2>Our Vision</h2>
-                    <p>To create a vibrant community of puzzle lovers who share a passion for creativity,</p>
-                    <p>To be the leading online destination for puzzle lovers, offering a diverse range of puzzles that inspire creativity and joy.</p>
-                </div>
-                
-            </div>
-            <br>
-            <div class="subAboutUs" id="mission">
-                <div class="aboutUsText"> 
-                    <h2>Our Mission</h2>
-                    <p>To create a vibrant community of puzzle lovers who share a passion for creativity,</p>
-                    <p>To be the leading online destination for puzzle lovers, offering a diverse range of puzzles that inspire creativity and joy.</p>
-               </div>
-                <img src="picture/vision.png" alt="Vision" width="720px" height="1000px">
 
-            </div>
-        </div>
-
-        </div>
     </div>
 
     <div id="filterContainer">
@@ -234,50 +121,51 @@
     </div>
 
     <footer>
-        <div class="footInfo">
-            <div class="footTitle">
-                <img id="logoIcon" src="picture/logo2c.png" alt="logo" width="140px" height="75px">
+        <div class="footMain">
+            <div class="footInfo">
+                <div class="footLogo">
+                    <img id="logoIcon" src="picture/logo2c.png" alt="logo" width="165px" height="85px">
+                </div>
+                <p>Pick any Puzzle of Your Choice!</p>
             </div>
-            <p>Transforming spaces and lives through the ancient wisdom of Feng Shui.</p>
+
+            <div class="footInfo">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#courses">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footInfo">
+                <h4>Our Products</h4>
+                <ul>
+                    <li><a href="allProduct.html#access">Accessories</a></li>
+                    <li><a href="allProduct.html#new">New Arrivals</a></li>
+                    <li><a href="allProduct.html#christ">Christmas Special</a></li>
+                    <li><a href="allProduct.html#snoopy">Snoopy is Here</a></li>
+                    <li><a href="allProduct.html#hot">Hot Sales</a></li>
+
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footInfo" id="contact">
+                <h4>Contact Us</h4>
+                <a href="mailto:pickpuzz@example.com"><img src="picture/email.png" alt="email" width="33px" height="23px"></a>
+                <a href="mailto:pickpuzz@example.com"><img src="picture/phone.png" alt="phone" width="25px" height="25px"></a>
+                <a href="https://facebook.com"><img src="picture/fb.png" alt="Facebook" width="25px" height="25px"></a>
+                <a href="https://instagram.com"><img src="picture/ig.png" alt="Instagram" width="25px" height="25px"></a>
+
+
+            </div>
         </div>
 
-        <div class="footInfo">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#courses">Products</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-        </div>
-
-        <div class="footInfo">
-            <h4>Our Products</h4>
-            <ul>
-                <li><a href="allProduct.html#access">Accessories</a></li>
-                <li><a href="allProduct.html#new">New Arrivals</a></li>
-                <li><a href="allProduct.html#christ">Christmas Special</a></li>
-                <li><a href="allProduct.html#snoopy">Snoopy is Here</a></li>
-                <li><a href="allProduct.html#hot">Hot Sales</a></li>
-
-            </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footInfo" id="contact">
-            <h4>Contact Us</h4>
-            <ul>
-                <li>
-                    <a href="mailto:pickpuzz@example.com">pickpuzz@example.com</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="footInfo">
-            <p>&copy; 2025 Puzzle Store. All rights reserved.</p>
-            <p>Contact us: <a href="mailto: pickpuzz@example.com">pickpuzz@example.com</a>
-       
+        <div class="footCopy">
+            <p>&copy; 2025 PickPuzz. All rights reserved.</p>       
         </div>
 
     </footer>
