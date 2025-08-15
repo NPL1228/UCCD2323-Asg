@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main2.css">
+    <!-- productItem CSS -->
+    <link rel="stylesheet" type="text/css" href="css/p4.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header sticky">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <!-- Menu Icon -->
+            <img id="menuIcon" src="picture/menu.png" alt="menu" width="40px" height="40px" class="me-3">
+
+            <!-- Logo Icon -->
+            <img id="logoIcon" src="picture/logo2b.png" alt="logo" width="150px" height="90px">
+
+            <!-- Search bar Icon -->
+            <div class="d-flex align-items-center flex-grow-1 mx-5 position-relative">
+                <img src="picture/magGlass.png" alt="magGlass" width="40px" height="40px"
+                    class="position-absolute ms-2">
+                <input id="search" type="text" placeholder="search for product" class="form-control ps-5">
+            </div>
+            <!-- cart Icon with badge -->
+            <div class="cart-icon-container position-relative">
+                <img id="cartIcon" src="picture/cart.png" alt="cart" width="80px" height="50px" class="ms-3">
+                <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </div>
+
+            <!-- Sign In / Up Buttons -->
+            <div id="signInUp" class="hidden">
+                <button type="button" id="signIn">Sign In</button>
+                <button type="button" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="product-container">
+            <div class="product-container-2">
+                <div class="scroll-sync-wrapper">
+                    <div class="col-md-6 pd-4 overflow-auto product-container-2-left" id="productImages">
+                        <!-- Images will be loaded dynamically -->
+                    </div>
+                    <div class="product-container-2-right">
+                        <div class="product-container-2-right-Info">
+                            <div id="product-name">Loading...</div>
+                            <div id="product-price">RM0.00</div>
+                            <p id="product-desc">Loading product description...</p>
+
+                            <div class="tabSection">
+                                <div class="tab-buttons">
+                                    <button class="tab-btn active">Product Details</button>
+                                    <button class="tab-btn">What's Includes</button>
+                                </div>
+                            </div>
+
+                            <div class="tab-contents">
+                                <div id="details" class="tab-content active">
+                                    <!-- Details content will be loaded dynamically -->
+                                </div>
+                                <div id="includes" class="tab-content">
+                                    <!-- Includes content will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quantity">
+                            <p>Quantity</p>
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" placeholder="qty">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <p class="availability" id="stockAvailability">Checking availability...</p>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="checkout">Checkout</button>
+                        </div>
+                    </div>
+
+                    <div class="share-wishList">
+                        <div class="share">
+                            <img src="picture/productDetail/share.png" alt="share" width="30px" height="30px">
+                            <div class="share-socialMedia">
+                                <a href="https://www.facebook.com/"><img src="picture/productDetail/facebook.png" alt="Facebook" width="30px" height="30px"></a>
+                                <a href="https://www.instagram.com/"><img src="picture/productDetail/instagram.png" alt="Instagram" width="30px" height="30px"></a>
+                                <a href="https://www.messenger.com/"><img src="picture/productDetail/messenger.png" alt="Messenger" width="30px" height="30px"></a>
+                                <a href="https://web.whatsapp.com/"><img src="picture/productDetail/whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
+                                <a href="https://x.com/X."><img src="picture/productDetail/twitter.png" alt="Twitter" width="30px" height="30px"></a>
+                            </div>
+                        </div>
+                        <div class="wish">
+                            <img src="picture/productDetail/heart.png" alt="wishList" width="30px" height="30px" class="wishList" id="wishListBtn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="related-container">
+                <h2>Related products</h2>
+                <div class="related-controls">
+                    <button class="related-arrow arrowLeft">
+                        <img src="picture/productDetail/left-arrow.png" alt="left arrow" width="30px" height="30px">
+                    </button>
+                    <div class="related-container-2" id="relatedProducts">
+                        <!-- Related products will be loaded dynamically -->
+                    </div>
+                    <button class="related-arrow arrowRight">
+                        <img src="picture/productDetail/right-arrow.png" alt="right arrow" width="30px" height="30px">
+                    </button>
+                </div>
+            </div>
+            <!-- end of related product -->
+        </div>
+    </div>
+
+    <div id="filter-container">
+        <!-- Filter content remains the same -->
+        <div class="filter-section">
+            <h2>Product category</h2>
+            <ul class="filter-options">
+                <li class="active">All Product</li>
+                <li>New Arrival</li>
+                <li>2D puzzle</li>
+                <li>3D puzzle</li>
+                <li>Accessories</li>
+            </ul>
+        </div>
+
+        <div class="filter-section">
+            <h2>Material</h2>
+            <div class="checkbox-group">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="wood">
+                    <label for="wood">Wood</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="plastic">
+                    <label for="plastic">Plastic</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="metal">
+                    <label for="metal">Metal</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="cardboard">
+                    <label for="cardboard">Cardboard</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h2>Price</h2>
+            <div class="price-range">
+                <label for="priceSlider">Price between 10 and 1000</label>
+                <input type="range" id="priceSlider" name="price" min="10" max="1000">
+                <span class="slider-value">50</span>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h2>Pieces</h2>
+            <div class="checkbox-group">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="100-500">
+                    <label for="100-500">100-500 pieces</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="500-1000">
+                    <label for="500-1000">500-1000 pieces</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="1000+">
+                    <label for="1000+">1000+ pieces</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product data (would normally come from an API)
+        const products = {
+            "animal12": {
+                id: "animal12",
+                name: "12 Animal Signs",
+                price: 200.00,
+                description: "\"12 Zodiac\" puzzle brings the Chinese zodiac to life with vibrant artistry and cultural significance. Piece by piece, uncover a stunning scene showcasing all twelve animal signs, each depicted with unique charm and detail. Perfect for those who appreciate astrology, tradition, and the beauty of symbolic art.",
+                images: [
+                    "picture/Animal12/animal12-1.webp",
+                    "picture/Animal12/animal12-2.webp",
+                    "picture/Animal12/animal12-3.webp",
+                    "picture/Animal12/animal12-4.webp",
+                    "picture/Animal12/animal12-5.webp"
+                ],
+                details: {
+                    pieces: 1000,
+                    material: "Glass",
+                    size: "15cm x 20cm"
+                },
+                includes: [
+                    "The poster",
+                    "12 animal signs key chains",
+                    "Puzzle Glue"
+                ],
+                stock: 22,
+                category: "2D puzzle"
+            },
+            "sunstone": {
+                id: "sunstone",
+                name: "Aztec Sun Stone",
+                price: 300.00,
+                description: "The Aztec Sun Stone puzzle captures the intricate details of this famous Mesoamerican artifact. Challenge yourself with this circular puzzle featuring complex patterns and symbols from Aztec culture.",
+                images: [
+                    "picture/Sun/sun1.webp",
+                    "picture/Sun/sun2.webp",
+                    "picture/Sun/sun3.webp"
+                ],
+                details: {
+                    pieces: 1000,
+                    material: "Cardboard",
+                    size: "50cm diameter"
+                },
+                includes: [
+                    "Reference poster",
+                    "Puzzle glue",
+                    "Cultural information leaflet"
+                ],
+                stock: 15,
+                category: "2D puzzle"
+            },
+            // Add 8 more products here...
+            "dragon": {
+                id: "dragon",
+                name: "Mythical Dragon",
+                price: 250.00,
+                description: "A majestic dragon puzzle with shimmering scales and fiery breath. This challenging puzzle features a fantasy scene with incredible detail.",
+                images: [
+                    "picture/Dragon/dragon1.webp",
+                    "picture/Dragon/dragon2.webp"
+                ],
+                details: {
+                    pieces: 1500,
+                    material: "Cardboard",
+                    size: "60cm x 40cm"
+                },
+                includes: [
+                    "Poster",
+                    "Collector's card"
+                ],
+                stock: 8,
+                category: "2D puzzle"
+            },
+            "eiffel": {
+                id: "eiffel",
+                name: "Eiffel Tower 3D",
+                price: 350.00,
+                description: "Build your own Eiffel Tower with this stunning 3D puzzle. Made from precision-cut wood pieces that slot together without glue.",
+                images: [
+                    "picture/Eiffel/eiffel1.webp",
+                    "picture/Eiffel/eiffel2.webp",
+                    "picture/Eiffel/eiffel3.webp"
+                ],
+                details: {
+                    pieces: 324,
+                    material: "Wood",
+                    size: "45cm tall"
+                },
+                includes: [
+                    "Assembly instructions",
+                    "Display base"
+                ],
+                stock: 12,
+                category: "3D puzzle"
+            },
+            "castle": {
+                id: "castle",
+                name: "Medieval Castle",
+                price: 180.00,
+                description: "A beautiful castle puzzle with towers, flags and surrounding landscape. Perfect for history enthusiasts.",
+                images: [
+                    "picture/Castle/castle1.webp",
+                    "picture/Castle/castle2.webp"
+                ],
+                details: {
+                    pieces: 750,
+                    material: "Cardboard",
+                    size: "40cm x 30cm"
+                },
+                includes: [
+                    "Poster",
+                    "Historical facts sheet"
+                ],
+                stock: 18,
+                category: "2D puzzle"
+            },
+            "safari": {
+                id: "safari",
+                name: "African Safari",
+                price: 220.00,
+                description: "Wildlife puzzle featuring elephants, lions, giraffes and more in their natural habitat. Vibrant colors and detailed artwork.",
+                images: [
+                    "picture/Safari/safari1.webp",
+                    "picture/Safari/safari2.webp",
+                    "picture/Safari/safari3.webp"
+                ],
+                details: {
+                    pieces: 1000,
+                    material: "Cardboard",
+                    size: "50cm x 35cm"
+                },
+                includes: [
+                    "Poster",
+                    "Animal facts guide"
+                ],
+                stock: 10,
+                category: "2D puzzle"
+            },
+            "spaceship": {
+                id: "spaceship",
+                name: "Space Explorer 3D",
+                price: 400.00,
+                description: "Build your own futuristic spaceship with this challenging 3D metal puzzle. No glue required - pieces snap together securely.",
+                images: [
+                    "picture/Spaceship/spaceship1.webp",
+                    "picture/Spaceship/spaceship2.webp"
+                ],
+                details: {
+                    pieces: 287,
+                    material: "Metal",
+                    size: "30cm long"
+                },
+                includes: [
+                    "Assembly tool",
+                    "Display stand"
+                ],
+                stock: 6,
+                category: "3D puzzle"
+            },
+            "ocean": {
+                id: "ocean",
+                name: "Ocean Wonders",
+                price: 190.00,
+                description: "Colorful underwater scene with coral reefs, tropical fish, and marine life. A relaxing puzzle with beautiful colors.",
+                images: [
+                    "picture/Ocean/ocean1.webp",
+                    "picture/Ocean/ocean2.webp"
+                ],
+                details: {
+                    pieces: 800,
+                    material: "Cardboard",
+                    size: "45cm x 30cm"
+                },
+                includes: [
+                    "Poster",
+                    "Marine life guide"
+                ],
+                stock: 14,
+                category: "2D puzzle"
+            },
+            "train": {
+                id: "train",
+                name: "Vintage Train",
+                price: 280.00,
+                description: "Steam train puzzle featuring a classic locomotive with intricate details. Perfect for train enthusiasts.",
+                images: [
+                    "picture/Train/train1.webp",
+                    "picture/Train/train2.webp"
+                ],
+                details: {
+                    pieces: 1200,
+                    material: "Cardboard",
+                    size: "60cm x 40cm"
+                },
+                includes: [
+                    "Poster",
+                    "Historical information"
+                ],
+                stock: 9,
+                category: "2D puzzle"
+            },
+            "globe": {
+                id: "globe",
+                name: "World Globe 3D",
+                price: 320.00,
+                description: "Build your own rotating globe with this educational 3D puzzle. Features countries, oceans, and major cities.",
+                images: [
+                    "picture/Globe/globe1.webp",
+                    "picture/Globe/globe2.webp"
+                ],
+                details: {
+                    pieces: 540,
+                    material: "Plastic",
+                    size: "25cm diameter"
+                },
+                includes: [
+                    "Stand",
+                    "Geographic facts"
+                ],
+                stock: 7,
+                category: "3D puzzle"
+            }
+        };
+
+        // Cart functionality using localStorage
+        class Cart {
+            constructor() {
+                this.cart = this.loadCart();
+                this.updateCartBadge();
+            }
+            
+            loadCart() {
+                const cart = localStorage.getItem('cart');
+                return cart ? JSON.parse(cart) : [];
+            }
+            
+            saveCart() {
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+                this.updateCartBadge();
+            }
+            
+            addItem(productId, quantity, productData) {
+                const existingItem = this.cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    this.cart.push({
+                        id: productId,
+                        name: productData.name,
+                        price: productData.price,
+                        quantity: quantity,
+                        image: productData.images[0]
+                    });
+                }
+                
+                this.saveCart();
+                showAlert('success', 'Product added to cart!');
+            }
+            
+            getTotalItems() {
+                return this.cart.reduce((total, item) => total + item.quantity, 0);
+            }
+            
+            updateCartBadge() {
+                const badge = document.getElementById('cartBadge');
+                const totalItems = this.getTotalItems();
+                badge.textContent = totalItems;
+                badge.style.display = totalItems > 0 ? 'block' : 'none';
+            }
+        }
+
+        // Initialize cart
+        const cart = new Cart();
+
+        // Utility functions
+        function showAlert(type, message) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} fixed-top mx-auto mt-3`;
+            alert.style.maxWidth = '500px';
+            alert.style.zIndex = '2000';
+            alert.textContent = message;
+            
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 300);
+            }, 3000);
+        }
+
+        function formatPrice(price) {
+            return `RM${price.toFixed(2)}`;
+        }
+
+        // DOM elements
+        const productImagesContainer = document.getElementById('productImages');
+        const productNameElement = document.getElementById('product-name');
+        const productPriceElement = document.getElementById('product-price');
+        const productDescElement = document.getElementById('product-desc');
+        const detailsContent = document.getElementById('details');
+        const includesContent = document.getElementById('includes');
+        const stockAvailability = document.getElementById('stockAvailability');
+        const relatedProductsContainer = document.getElementById('relatedProducts');
+        const addToCartBtn = document.querySelector('.add-to-cart');
+        const checkoutBtn = document.querySelector('.checkout');
+        const quantityInput = document.querySelector('.quantity-input');
+        const minusBtn = document.querySelector('.minus');
+        const plusBtn = document.querySelector('.plus');
+        const wishListBtn = document.getElementById('wishListBtn');
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                const tabId = button.textContent.trim().toLowerCase().replace(' ', '');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Quantity controls
+        minusBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+
+        plusBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+        });
+
+        // Wishlist functionality
+        wishListBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (this.classList.contains('active')) {
+                showAlert('success', 'Added to wishlist!');
+            } else {
+                showAlert('info', 'Removed from wishlist');
+            }
+        });
+
+        // Load product data
+        function loadProduct(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            // Update main product info
+            productNameElement.textContent = product.name;
+            productPriceElement.textContent = formatPrice(product.price);
+            productDescElement.textContent = product.description;
+            stockAvailability.textContent = `${product.stock} items available`;
+            
+            // Update images
+            productImagesContainer.innerHTML = '';
+            product.images.forEach(image => {
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = product.name;
+                productImagesContainer.appendChild(img);
+            });
+            
+            // Update details
+            detailsContent.innerHTML = `
+                <div>
+                    <img src="picture/productDetail/puzzle-piece.png" alt="puzzle" width="25px" height="25px">
+                    <span>Pieces: </span>
+                    <p>${product.details.pieces}</p>
+                </div>
+                <div>
+                    <img src="picture/productDetail/material.png" alt="material" width="25px" height="25px">
+                    <span>Materials: </span>
+                    <p>${product.details.material}</p>
+                </div>
+                <div>
+                    <img src="picture/productDetail/maximize.png" alt="maximise" width="25px" height="25px">
+                    <span>Size: </span>
+                    <p>${product.details.size}</p>
+                </div>
+            `;
+            
+            // Update includes
+            includesContent.innerHTML = `
+                <p><strong>The package includes</strong></p>
+                <ul>
+                    ${product.includes.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `;
+            
+            // Set up add to cart button
+            addToCartBtn.onclick = () => {
+                const quantity = parseInt(quantityInput.value);
+                if (quantity > product.stock) {
+                    showAlert('danger', 'Not enough stock available');
+                    return;
+                }
+                cart.addItem(productId, quantity, product);
+            };
+            
+            // Set up checkout button
+            checkoutBtn.onclick = () => {
+                const quantity = parseInt(quantityInput.value);
+                if (quantity > product.stock) {
+                    showAlert('danger', 'Not enough stock available');
+                    return;
+                }
+                cart.addItem(productId, quantity, product);
+                window.location.href = 'checkout.html'; // You would need to create this page
+            };
+            
+            // Load related products (excluding current product)
+            loadRelatedProducts(productId, product.category);
+        }
+
+        // Load related products
+        function loadRelatedProducts(currentProductId, category) {
+            relatedProductsContainer.innerHTML = '';
+            
+            // Get products in same category (excluding current product)
+            const relatedProducts = Object.values(products)
+                .filter(product => product.id !== currentProductId && product.category === category)
+                .slice(0, 5); // Show up to 5 related products
+            
+            if (relatedProducts.length === 0) {
+                // If no same-category products, show random products
+                relatedProducts.push(...Object.values(products)
+                    .filter(product => product.id !== currentProductId)
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 5));
+            }
+            
+            relatedProducts.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'related-product';
+                productElement.innerHTML = `
+                    <img src="${product.images[0]}" alt="${product.name}" width="200px" height="200px">
+                    <p class="related-productName">${product.name}</p>
+                    <p class="related-price">${formatPrice(product.price)}</p>
+                    <div class="related-details">
+                        <div>
+                            <img src="picture/productDetail/puzzle-piece.png" alt="puzzle" width="25px" height="25px">
+                            <span>Pieces: </span>
+                            <p>${product.details.pieces}</p>
+                        </div>
+                        <div>
+                            <img src="picture/productDetail/material.png" alt="material" width="25px" height="25px">
+                            <span>Materials: </span>
+                            <p>${product.details.material}</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Make product clickable
+                productElement.addEventListener('click', () => {
+                    window.location.href = `product.html?id=${product.id}`; // Update URL with product ID
+                    loadProduct(product.id); // Load the new product
+                });
+                
+                relatedProductsContainer.appendChild(productElement);
+            });
+            
+            // Set up carousel navigation
+            setupCarousel();
+        }
+
+        // Simple carousel functionality
+        function setupCarousel() {
+            const container = document.querySelector('.related-container-2');
+            const products = document.querySelectorAll('.related-product');
+            const productWidth = 250; // Approximate width of each product + margin
+            let position = 0;
+            const maxPosition = -(products.length * productWidth - container.offsetWidth);
+            
+            document.querySelector('.arrowLeft').addEventListener('click', () => {
+                position = Math.min(position + productWidth * 3, 0);
+                container.style.transform = `translateX(${position}px)`;
+            });
+            
+            document.querySelector('.arrowRight').addEventListener('click', () => {
+                position = Math.max(position - productWidth * 3, maxPosition);
+                container.style.transform = `translateX(${position}px)`;
+            });
+        }
+
+        // Get product ID from URL or use default
+        function getProductIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id') || 'animal12'; // Default to animal12 if no ID in URL
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            const productId = getProductIdFromUrl();
+            loadProduct(productId);
+            
+            // Cart icon click handler
+            document.getElementById('cartIcon').addEventListener('click', () => {
+                window.location.href = 'cart.html'; // You would need to create this page
+            });
+        });
+    </script>
+
+    <style>
+        /* Additional styles for dynamic elements */
+        .alert {
+            transition: opacity 0.3s ease;
+        }
+        
+        .alert.fade {
+            opacity: 0;
+        }
+        
+        .wishList.active {
+            filter: brightness(0) saturate(100%) invert(25%) sepia(99%) saturate(7458%) hue-rotate(358deg) brightness(101%) contrast(112%);
+        }
+        
+        .related-product {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .related-product:hover {
+            transform: translateY(-5px);
+        }
+        
+        .related-container-2 {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-icon-container {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        #cartBadge {
+            display: none;
+            font-size: 12px;
+            padding: 5px;
+        }
+    </style>
+</body>
+
+</html>

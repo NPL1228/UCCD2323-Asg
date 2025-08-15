@@ -80,11 +80,12 @@
     font-weight: bold;
     margin-bottom: 15px;
     color: #212529;
+    padding-right: 40px;
 }
 
 #product-price {
     font-size: 25px;
-    color: #000000;
+    color: #e68102;
     margin-bottom: 20px;
 }
 
@@ -205,6 +206,10 @@
     font-size: 16px;
     cursor: pointer;
     color: #495057;
+}
+.minus:hover, .plus:hover{
+    background-color: #000000;
+    color: white;
 }
 
 .quantity-input::-webkit-outer-spin-button,
@@ -345,6 +350,7 @@
         transform: scale(1);
     }
 }
+
 .wishlist-message {
     position: fixed;
     top: 50%;
@@ -382,22 +388,27 @@
     padding: 20px;
     overflow: hidden;
 }
-.related-controls{
+
+.related-controls {
     display: flex;
     align-items: center;
     gap: 15px;
 }
+
 .related-container-2 {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
     gap: 20px;
     padding: 10px 0;
-    scrollbar-width: none; /* Hide scrollbar */
+    scrollbar-width: none;
+    /* Hide scrollbar */
     -ms-overflow-style: none;
 }
+
 .related-container-2::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
+    display: none;
+    /* Hide scrollbar for Chrome/Safari */
 }
 
 .related-product {
@@ -407,13 +418,20 @@
     /* box-sizing: border-box; */
     border-radius: 8px;
     /* margin: 10px; */
-    padding:15px;
+    padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
+
 .related-product:hover {
     transform: scale(1.05);
 }
+
+#related-img {
+    display: block;     
+    margin: 0 auto;  
+}
+
 
 #related-details>img {
     width: 25%;
@@ -426,19 +444,6 @@
     flex-direction: row;
     align-items: center;
     padding: 10px;
-}
-
-#related-details span {
-    font-weight: bold;
-    display: inline-block;
-    padding-left: 15px;
-    color: #B46400;
-}
-
-#related-details p {
-    display: inline-block;
-    margin: 0;
-    padding-left: 10px;
 }
 
 #related-price {
@@ -454,13 +459,26 @@
     font-size: 25px;
 }
 
+#related-details span {
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 15px;
+    color: #B46400;
+}
+
+#related-details p {
+    display: inline-block;
+    margin: 0;
+    padding-left: 10px;
+}
+
 /* arrows */
 .related-arrow {
     background-color: white;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     padding: 10px;
     z-index: 2;

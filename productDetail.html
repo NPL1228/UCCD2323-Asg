@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main2.css">
+    <!-- productItem CSS -->
+    <link rel="stylesheet" type="text/css" href="css/p4.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header sticky">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <!-- Menu Icon -->
+            <img id="menuIcon" src="picture/menu.png" alt="menu" width="40px" height="40px" class="me-3">
+
+            <!-- Logo Icon -->
+            <img id="logoIcon" src="picture/logo2b.png" alt="logo" width="150px" height="90px">
+
+            <!-- Search bar Icon -->
+            <div class="d-flex align-items-center flex-grow-1 mx-5 position-relative">
+                <img src="picture/magGlass.png" alt="magGlass" width="40px" height="40px"
+                    class="position-absolute ms-2">
+                <input id="search" type="text" placeholder="search for product" class="form-control ps-5">
+            </div>
+            <!-- cart Icon -->
+            <img id="cartIcon" src="picture/cart.png" alt="cart" width="80px" height="50px" class="ms-3">
+
+            <!-- Sign In / Up Buttons -->
+            <div id="signInUp" class="hidden">
+                <button type="button" id="signIn">Sign In</button>
+                <button type="button" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <div class="container-fluid">
+
+        <div class="product-container">
+            <div class="product-container-2">
+                <div class="scroll-sync-wrapper">
+                    <div class="col-md-6 pd-4 overflow-auto product-container-2-left" id="productImages">
+                        <!-- image -->
+                    </div>
+                    <div class="product-container-2-right">
+                        <div class="product-container-2-right-Info">
+                            <div id="product-name">Loading...</div>
+                            <div id="product-price">RM0.00</div>
+                            <p id="product-desc">"Loading...</p>
+
+                            <div class="tabSection">
+                                <div class="tab-buttons">
+                                    <button class="tab-btn active">Product Details</span>
+                                        <button class="tab-btn">What's Includes</span>
+                                </div>
+                            </div>
+
+                            <div class="tab-contents">
+                                <div id="details" class="tab-content active">
+                                    <!-- Details content -->
+
+                                </div>
+                                <div id="includes" class="tab-content">
+                                    <!-- Includes content -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quantity">
+                            <p>Quantity</p>
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" placeholder="qty">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <p class="availability" id="stockAvailability">Loading...</p>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="checkout">Checkout</button>
+                        </div>
+                    </div>
+
+                    <div class="share-wishList">
+                        <div class="share">
+                            <img src="picture/productDetail/share.png" alt="share" width="30px" height="30px">
+                            <div class="share-socialMedia">
+                                <a href="https://www.facebook.com/"><img src="picture/productDetail/facebook.png"
+                                        alt="Facebook" width="30px" height="30px"></a>
+                                <a href="https://www.instagram.com/"><img src="picture/productDetail/instagram.png"
+                                        alt="Instagram" width="30px" height="30px"></a>
+                                <a href="https://www.messenger.com/"><img src="picture/productDetail/messenger.png"
+                                        alt="Messenger" width="30px" height="30px"></a>
+                                <a href="https://web.whatsapp.com/"><img src="picture/productDetail/whatsapp.png"
+                                        alt="Whatsapp" width="30px" height="30px"></a>
+                                <a href="https://x.com/X."><img src="picture/productDetail/twitter.png" alt="Twitter"
+                                        width="30px" height="30px"></a>
+                            </div>
+                        </div>
+                        <div class="wish">
+                            <img src="picture/productDetail/heart.png" alt="wishList" width="30px" height="30px"
+                                class="wishList">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="related-container">
+                <h2>Related product</h2>
+                <div class="related-controls">
+                    <button class="related-arrow arrowLeft">
+                        <img src="picture/productDetail/left-arrow.png" alt="left arrow" width="30px" height="30px">
+                    </button>
+                    <div class="related-container-2" id="relatedProducts">
+                        <!-- related product -->
+                    </div>
+                    <button class="related-arrow arrowRight">
+                        <img src="picture/productDetail/right-arrow.png" alt="right arrow" width="30px" height="30px">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="filter-container">
+        <div class="filter-section">
+            <h2>Product category</h2>
+            <ul class="filter-options">
+                <li class="active">All Product</li>
+                <li>New Arrival</li>
+                <li>2D puzzle</li>
+                <li>3D puzzle</li>
+                <li>Accessories</li>
+            </ul>
+        </div>
+
+        <div class="filter-section">
+            <h2>Material</h2>
+            <div class="checkbox-group">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="wood">
+                    <label for="wood">Wood</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="plastic">
+                    <label for="plastic">Plastic</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="metal">
+                    <label for="metal">Metal</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="cardboard">
+                    <label for="cardboard">Cardboard</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h2>Price</h2>
+            <div class="price-range">
+                <label for="priceSlider">Price between 10 and 1000</label>
+                <input type="range" id="priceSlider" name="price" min="10" max="1000">
+                <span class="slider-value">50</span>
+
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h2>Pieces</h2>
+            <div class="checkbox-group">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="100-500">
+                    <label for="100-500">100-500 pieces</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="500-1000">
+                    <label for="500-1000">500-1000 pieces</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="1000+">
+                    <label for="1000+">1000+ pieces</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/productDetail.js"></script>
+</body>
+
+</html>
