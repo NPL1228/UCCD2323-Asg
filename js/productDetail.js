@@ -1,5 +1,3 @@
-import { products } from './productInfo.js';
-
 const menuBtn = document.getElementById("menuIcon")
 menuBtn.addEventListener('click', function () {
     console.log('Clicked');
@@ -15,22 +13,38 @@ const productDescElement = document.getElementById('product-desc');
 const detailsContent = document.getElementById('details');
 const includesContent = document.getElementById('includes');
 const stockAvailability = document.getElementById('stockAvailability');
-let currentStock=0;
+let currentStock = 0;
 const relatedProductsContainer = document.getElementById('relatedProducts');
-// const addToCartBtn = document.querySelector('.add-to-cart');
-// const checkoutBtn = document.querySelector('.checkout');
-//const quantityInput = document.querySelector('.quantity-input');
+let productsData = []; // This will store our loaded products
+
+// Load product data from JSON file
+async function loadProductData() {
+    try {
+        const response = await fetch('js/productInfo.json');
+        if (!response.ok) {
+            throw new Error('Failed to load products data');
+        }
+        const data = await response.json();
+        productsData = data.products;
+    } catch (error) {
+        console.error('Error loading product data:', error);
+        showAlert('danger', 'Failed to load product information');
+    }
+}
 
 function loadProduct(productId) {
-    const product = products[productId];
-    if (!product) return;
+    const product = productsData.find(p => p.id === productId);
+    if (!product) {
+        showAlert('danger', 'Product not found');
+        return;
+    }
 
     // Update main product info
     productNameElement.textContent = product.name;
     productPriceElement.textContent = formatPrice(product.price);
     productDescElement.textContent = product.description;
     stockAvailability.textContent = `${product.stock} items available`;
-    currentStock=product.stock;
+    currentStock = product.stock;
 
     // Update images
     productImagesContainer.innerHTML = '';
@@ -38,56 +52,36 @@ function loadProduct(productId) {
         const img = document.createElement('img');
         img.src = image;
         img.alt = product.name;
+        img.loading = 'lazy'; // Add lazy loading
         productImagesContainer.appendChild(img);
     });
 
     // Update details
     detailsContent.innerHTML = `
-                <div>
-                    <img src="picture/productDetail/puzzle-piece.png" alt="puzzle" width="25px" height="25px">
-                    <span>Pieces: </span>
-                    <p>${product.details.pieces}</p>
-                </div>
-                <div>
-                    <img src="picture/productDetail/material.png" alt="material" width="25px" height="25px">
-                    <span>Materials: </span>
-                    <p>${product.details.material}</p>
-                </div>
-                <div>
-                    <img src="picture/productDetail/maximize.png" alt="maximise" width="25px" height="25px">
-                    <span>Size: </span>
-                    <p>${product.details.size}</p>
-                </div>
-            `;
+        <div>
+            <img src="picture/productDetail/puzzle-piece.png" alt="puzzle" width="25px" height="25px">
+            <span>Pieces: </span>
+            <p>${product.details.pieces}</p>
+        </div>
+        <div>
+            <img src="picture/productDetail/material.png" alt="material" width="25px" height="25px">
+            <span>Materials: </span>
+            <p>${product.details.material}</p>
+        </div>
+        <div>
+            <img src="picture/productDetail/maximize.png" alt="maximise" width="25px" height="25px">
+            <span>Size: </span>
+            <p>${product.details.size}</p>
+        </div>
+    `;
 
     // Update includes
     includesContent.innerHTML = `
-                <p><strong>The package includes</strong></p>
-                <ul>
-                    ${product.includes.map(item => `<li>${item}</li>`).join('')}
-                </ul>
-            `;
-
-    // Set up add to cart button
-    // addToCartBtn.onclick = () => {
-    //     const quantity = parseInt(quantityInput.value);
-    //     if (quantity > product.stock) {
-    //         showAlert('danger', 'Not enough stock available');
-    //         return;
-    //     }
-    //     cart.addItem(productId, quantity, product);
-    // };
-
-    // // Set up checkout button
-    // checkoutBtn.onclick = () => {
-    //     const quantity = parseInt(quantityInput.value);
-    //     if (quantity > product.stock) {
-    //         showAlert('danger', 'Not enough stock available');
-    //         return;
-    //     }
-    //     cart.addItem(productId, quantity, product);
-    //     window.location.href = 'checkout.html'; // You would need to create this page
-    // };
+        <p><strong>The package includes</strong></p>
+        <ul>
+            ${product.includes.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+    `;
 
     // Load related products (excluding current product)
     loadRelatedProducts(productId, product.category);
@@ -97,16 +91,20 @@ function loadProduct(productId) {
 function loadRelatedProducts(currentProductId) {
     relatedProductsContainer.innerHTML = '';
 
-    // Get all products excluding current product
-    const allProducts = Object.values(products)
-        .filter(product => product.id !== currentProductId);
+    // Filter related products (same category, excluding current product)
+    const relatedProducts = productsData.filter(product =>
+        product.id !== currentProductId);
 
-    // Create product elements for all products
-    allProducts.forEach(product => {
+    // If no related products in same category, show other products
+    const productsToShow = relatedProducts.length > 0 ? relatedProducts :
+        productsData.filter(product => product.id !== currentProductId);
+
+    // Create product elements
+    productsToShow.forEach(product => {
         const productElement = document.createElement('div');
         productElement.className = 'related-product';
         productElement.innerHTML = `
-            <img id="related-img" src="${product.images[0]}" alt="${product.name}" width="200" height="200">
+            <img id="related-img" src="${product.images[0]}" alt="${product.name}" width="200" height="200" loading="lazy">
             <p id="related-productName">${product.name}</p>
             <p id="related-price">${formatPrice(product.price)}</p>
             <div id="related-details">
@@ -128,22 +126,18 @@ function loadRelatedProducts(currentProductId) {
             </div>
         `;
 
-        // Make product clickable
         productElement.addEventListener('click', () => {
-            //go to top
             window.scrollTo(0, 0);
             const productContainer = document.querySelector('.product-container-2');
-            productContainer.scrollTop = 0;
-            
-                // Update URL 
-                window.history.pushState({}, '', `productDetail.html?id=${product.id}`);
-                loadProduct(product.id);
-            });
+            if (productContainer) productContainer.scrollTop = 0;
+
+            window.history.pushState({}, '', `productDetail.html?id=${product.id}`);
+            loadProduct(product.id);
+        });
 
         relatedProductsContainer.appendChild(productElement);
     });
 
-    // Initialize 
     setupRelatedList();
 }
 
@@ -214,26 +208,30 @@ function setupRelatedList() {
     updateArrows();
     startAutoScroll();
 }
-
-// Get product ID from URL or use default
-function getProductIdFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id') || 'animal12'; // Default to animal12 if no ID in URL
-}
-
 // Initialize page
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadProductData();
     const productId = getProductIdFromUrl();
     loadProduct(productId);
 
-    // Cart icon click handler
-    document.getElementById('cartIcon').addEventListener('click', () => {
-        window.location.href = 'cart.html'; // You would need to create this page
+    document.getElementById('cartIcon')?.addEventListener('click', () => {
+        window.location.href = 'cart.html';
     });
 });
 
+// Helper functions
+function getProductIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id') || productsData[0]?.id || 'animal12';
+}
+
 function formatPrice(price) {
     return `RM${price.toFixed(2)}`;
+}
+
+function showAlert(type, message) {
+    // Implement your alert/notification system here
+    console.log(`${type}: ${message}`);
 }
 
 // share and wishList
@@ -357,3 +355,4 @@ categoryItems.forEach(item => {
         this.classList.add('active');
     });
 });
+
