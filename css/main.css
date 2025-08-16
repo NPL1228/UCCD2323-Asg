@@ -61,7 +61,7 @@ body {
 }
 
 #profile {
-    top: 130px;
+    top: 110px;
     position: absolute;
     right:35px;
 }
@@ -186,6 +186,7 @@ body {
 }
 
 footer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     position: relative;
     background-color: #F6CA93;
     color: black;
