@@ -72,13 +72,13 @@
             "price": 77.90,
             "description": "\"Christmas Square\" captures the magic of the holiday season with a bustling street adorned with festive lights, decorated trees, and cheerful holiday charm. Piece by piece, create a cozy and heartwarming scene filled with the joy and wonder of Christmas. Perfect for celebrating the most wonderful time of the year!",
             "images": [
-                "picture/chrismas1/chrismas1-1.webp",
-                "picture/chrismas1/chrismas1-2.webp",
-                "picture/chrismas1/chrismas1-3.jpg",
-                "picture/chrismas1/chrismas1-4.webp",
-                "picture/chrismas1/chrismas1-5.webp",
-                "picture/chrismas1/chrismas1-6.webp",
-                "picture/chrismas1/chrismas1-7.webp"
+                "picture/christmas1/chrismas1-1.webp",
+                "picture/christmas1/chrismas1-2.webp",
+                "picture/christmas1/chrismas1-3.jpg",
+                "picture/christmas1/chrismas1-4.webp",
+                "picture/christmas1/chrismas1-5.webp",
+                "picture/christmas1/chrismas1-6.webp",
+                "picture/christmas1/chrismas1-7.webp"
             ],
             "details": {
                 "pieces": 250,
@@ -99,10 +99,10 @@
             "price": 350.00,
             "description": "It’s the most wonderful time of the year and at the Upper Snoddlington Gingerbread House Competition, the tension is heating up! But when the time comes to award prizes for the finished creations, the judges cannot believe their eyes. Something leads them to believe that one of the contestants might have had a little more help than the others, but what could it possibly be?",
             "images": [
-                "picture/chrismas2/chrismas2-1.webp",
-                "picture/chrismas2/chrismas2-2.webp",
-                "picture/chrismas2/chrismas2-3.webp",
-                "picture/chrismas2/chrismas2-4.webp"
+                "picture/christmas2/chrismas2-1.webp",
+                "picture/christmas2/chrismas2-2.webp",
+                "picture/christmas2/chrismas2-3.webp",
+                "picture/christmas2/chrismas2-4.webp"
             ],
             "details": {
                 "pieces": 2000,
