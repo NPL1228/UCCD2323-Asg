@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: #F7E8D5;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #F6CA93;
+    color: white;
+    padding: 15px 15px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu {
+    margin-left: 20px;
+}
+
+.logo{
+    margin-left: 40px;
+}
+
+.searchBar {
+    margin-left: 600px;
+}
+
+#magGlassIcon {
+    position: absolute;
+    z-index: 2;
+    top: 38px;
+    left: 1110px;
+}
+
+#search {
+    font-size: large;
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    top: 30px;
+    left: 1100px;
+    z-index: 1;
+    text-indent: 40px;
+    border-radius: 10px;
+    border: 1px solid #F6CA93;
+}
+
+#cart {
+    position: absolute;
+    right: 40px;
+}
+
+#profile {
+    top: 110px;
+    position: absolute;
+    right:35px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Main Content */
+.mainContainer {
+    position: relative;
+    display: flex;
+    z-index: 1;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Filter Section */
+#filterContainer {
+    position: fixed;
+    top: 100px;
+    width: 350px;
+    height: 655px;
+    background-color: #FFFAF4;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 10;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+#filterContainer.show {
+    opacity: 1;
+    display: block;
+}
+
+.filterSection {
+    margin-bottom: 25px;
+}
+
+.filterSection h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #FFFAF4;
+    font-weight: 600;
+}
+
+.filterOptions {
+    list-style: none;
+}
+
+.filterOptions li {
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filterOptions li:hover {
+    color: #007bff;
+}
+
+.filterOptions li.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.checkboxGroup {
+    margin-top: 8px;
+}
+
+.checkboxOption {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.checkboxOption input {
+    margin-right: 8px;
+}
+
+.priceRange {
+    align-items: center;
+    margin-top: 8px;
+}
+
+#priceSlider {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin: 10px 0;
+}
+
+.sliderValue {
+    background: #F6CA93;
+    color: black;
+    width: 30px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+    z-index: 12;
+}
+
+#priceSlider:hover + .sliderValue {
+    display: block;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #434b53;
+    margin: 20px 0;
+}
+
+footer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: relative;
+    background-color: #F6CA93;
+    color: black;
+    padding: 40px;
+    height: 300px;
+    font-size: 20px;
+    
+}
+
+.footMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    width: 100%;    
+    gap: 80px;
+
+}
+
+.footLogo {
+    position: relative;
+    left: 50px;
+}
+
+footer h4 {
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding-left: 0;    
+}
+
+footer li {
+    margin-bottom: 5px;
+}
+
+footer a {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+
+}
+
+#contact img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.footInfo {
+    flex: 1;
+    width: 25%;
+}
+
+.footCopy {
+    position: absolute;
+    bottom: 20px;
+    left: 580px;
+}

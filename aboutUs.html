@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us-PickPuzz</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/aboutUs.css">
+</head>
+<body>
+    <div class="header">
+        <div class="menu">
+            <img id="menuIcon" src="picture/menu.png" alt="menu" width="40px" height="40px">
+        </div>
+        <div class="logo">
+            <a href="index.html"><img id="logoIcon" src="picture/logo2c.png" alt="logo" width="145px" height="75px"></a>
+        </div>
+        <div class="searchBar">
+            <img id="magGlassIcon" src="picture/magGlass.png" alt="magGlass" width="25px" height="25px">
+            <input id="search" type="text" placeholder="search for product">
+        </div>
+
+        <div id="cart">
+            <img id="cartIcon" src="picture/cart.png" alt="cart" width="45px" height="45px">
+        </div>        
+        <div id="profile">
+            <img src="picture/profile.png" alt="profile" width="45px" height="45px">
+        </div>
+    </div>
+    
+    
+    
+
+    <div class="mainContainer">
+        <div class="aboutUs">
+            <div class="aboutUsMain">
+                <h1>About Us</h1>
+                <p>We are a team of puzzle enthusiasts dedicated to bringing you the best selection of puzzles from around the world. Our mission is to provide high-quality puzzles that challenge and entertain.</p>
+                <p>Whether you're a beginner or a seasoned puzzler, we have something for everyone. Explore our collection and find your next favorite puzzle!</p>
+                <br>
+            </div>
+            <div class="subAboutUs" id="vision">
+                <img src="picture/vision.png" alt="Vision" width="720px" height="1000px">
+                <div class="aboutUsText">
+                    <h2>Our Vision</h2>
+                    <p>To create a vibrant community of puzzle lovers who share a passion for creativity,</p>
+                    <p>To be the leading online destination for puzzle lovers, offering a diverse range of puzzles that inspire creativity and joy.</p>
+                </div>
+                
+            </div>
+            <br>
+            <div class="subAboutUs" id="mission">
+                <div class="aboutUsText"> 
+                    <h2>Our Mission</h2>
+                    <p>To create a vibrant community of puzzle lovers who share a passion for creativity,</p>
+                    <p>To be the leading online destination for puzzle lovers, offering a diverse range of puzzles that inspire creativity and joy.</p>
+               </div>
+                <img src="picture/vision.png" alt="Vision" width="720px" height="1000px">
+
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div id="filterContainer">
+        <div class="filterSection">
+            <h2>Product category</h2>
+            <ul class="filterOptions">
+                <li class="active">All Product</li>
+                <li>New Arrival</li>
+                <li>2D puzzle</li>
+                <li>3D puzzle</li>
+                <li>Accessories</li>
+            </ul>
+        </div>
+        
+        <div class="filterSection">
+            <h2>Material</h2>
+            <div class="checkboxGroup">
+                <div class="checkboxOption">
+                    <input type="checkbox" id="wood">
+                    <label for="wood">Wood</label>
+                </div>
+                <div class="checkboxOption">
+                    <input type="checkbox" id="plastic">
+                    <label for="plastic">Plastic</label>
+                </div>
+                <div class="checkboxOption">
+                    <input type="checkbox" id="metal">
+                    <label for="metal">Metal</label>
+                </div>
+                <div class="checkboxOption">
+                    <input type="checkbox" id="cardboard">
+                    <label for="cardboard">Cardboard</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filterSection">
+            <h2>Price</h2>
+            <div class="priceRange">
+                <label for="priceSlider">Price between 10 and 1000</label>
+                <input type="range" id="priceSlider" name="price" min="10" max="1000">
+                <span class="sliderValue">50</span>
+
+            </div>
+        </div>
+        
+        <div class="filterSection">
+            <h2>Pieces</h2>
+            <div class="checkboxGroup">
+                <div class="checkboxOption">
+                    <input type="checkbox" id="100-500">
+                    <label for="100-500">100-500 pieces</label>
+                </div>
+                <div class="checkboxOption">
+                    <input type="checkbox" id="500-1000">
+                    <label for="500-1000">500-1000 pieces</label>
+                </div>
+                <div class="checkboxOption">
+                    <input type="checkbox" id="1000+">
+                    <label for="1000+">1000+ pieces</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footMain">
+            <div class="footInfo">
+                <div class="footLogo">
+                    <img id="logoIcon" src="picture/logo2c.png" alt="logo" width="165px" height="85px">
+                </div>
+                <p>Pick any Puzzle of Your Choice!</p>
+            </div>
+
+            <div class="footInfo">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#courses">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footInfo">
+                <h4>Our Products</h4>
+                <ul>
+                    <li><a href="allProduct.html#access">Accessories</a></li>
+                    <li><a href="allProduct.html#new">New Arrivals</a></li>
+                    <li><a href="allProduct.html#christ">Christmas Special</a></li>
+                    <li><a href="allProduct.html#snoopy">Snoopy is Here</a></li>
+                    <li><a href="allProduct.html#hot">Hot Sales</a></li>
+
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footInfo" id="contact">
+                <h4>Contact Us</h4>
+                <a href="mailto:pickpuzz@example.com"><img src="picture/email.png" alt="email" width="33px" height="23px"></a>
+                <a href="mailto:pickpuzz@example.com"><img src="picture/phone.png" alt="phone" width="25px" height="25px"></a>
+                <a href="https://facebook.com"><img src="picture/fb.png" alt="Facebook" width="25px" height="25px"></a>
+                <a href="https://instagram.com"><img src="picture/ig.png" alt="Instagram" width="25px" height="25px"></a>
+
+
+            </div>
+        </div>
+
+        <div class="footCopy">
+            <p>&copy; 2025 PickPuzz. All rights reserved.</p>       
+        </div>
+
+    </footer>
+
+    <script src="js/productDetail.js""></script>
+</body>
+</html>
