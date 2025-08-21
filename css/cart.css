@@ -1,0 +1,72 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color:#F7E8D5;
+  color:#333;
+}
+
+.header{
+    background:  #F6CA93;
+    padding:10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo{
+    margin-left: 40px;
+}
+
+.searchBar{
+    margin-left: 600px;
+}
+
+#magGlassIcon {
+    position: absolute;
+    z-index: 2;
+    top: 38px;
+    left: 1007px;
+}
+
+#search {
+    font-size: large;
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    top: 30px;
+    left: 1000px;
+    z-index: 1;
+    text-indent: 40px;
+    border-radius: 10px;
+    border: 1px solid #F6CA93;
+}
+
+#cart {
+    position: absolute;
+    right: 40px;
+}
+
+input[type='checkbox']{
+    width: 18px;
+    height:18px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+h2 {
+  font-weight: bold;
+  color: #c65306;
+}
+
+#emptyMsg {
+  display: none;
+}
+
+.table td img {
+  width: 70px;
+  height: auto;
+}
