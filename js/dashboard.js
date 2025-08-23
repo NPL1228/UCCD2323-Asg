@@ -1,10 +1,34 @@
+const navLinks = document.querySelectorAll('.nav-pills a');
+
+// Add click event to each link
+navLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Remove active class from all links
+        navLinks.forEach(l => l.classList.remove('active'));
+
+        // Add active class to clicked link
+        this.classList.add('active');
+
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Show the target section
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).classList.add('active');
+    });
+});
+
 // Initialize the data when the page loads
 document.addEventListener('DOMContentLoaded', initializeData);
 
 // Initialize all data from localStorage
 function initializeData() {
     initializeProfile();
-    initializeBanks();
+    initializeBanksCard();
     initializeAddresses();
 }
 
@@ -34,12 +58,8 @@ function updateProfileView(profileData) {
     document.getElementById('email').textContent = profileData.email;
     document.getElementById('countryCode').textContent = profileData.countryCode;
     document.getElementById('phone').textContent = profileData.phone;
-    document.getElementById('dob').textContent = profileData.dob;
-
-    // Set gender radio button
-    document.querySelectorAll('input[name="gender"]').forEach(radio => {
-        radio.checked = (radio.value === profileData.gender);
-    });
+    document.getElementById('dob').textContent = formatDateDMY(profileData.dob);
+    document.getElementById('gender').textContent = profileData.gender;
 }
 
 function loadEditForm() {
@@ -65,15 +85,12 @@ function saveProfile() {
     const countryCode = document.getElementById('editCountryCode').value;
     const phone = document.getElementById('editPhone').value;
     const dob = document.getElementById('editDob').value;
+    const selectedGender = document.querySelector('input[name="editGender"]:checked');
+    const gender = selectedGender ? selectedGender.value : 'other';
 
-    // Get selected gender
-    let gender;
-    if (document.getElementById('editMale').checked) {
-        gender = 'male';
-    } else if (document.getElementById('editFemale').checked) {
-        gender = 'female';
-    } else {
-        gender = 'other';
+    if (isNaN(phone)) {
+        alert("Phone numbers must be number digit only!");
+        return;
     }
 
     if (!username || !email || !phone || !dob) {
@@ -106,32 +123,33 @@ function saveProfile() {
 
 
 // BANK FUNCTIONS
-function initializeBanks() {
-    let banks = JSON.parse(localStorage.getItem('banks'));
+function initializeBanksCard() {
+    let bankCards = JSON.parse(localStorage.getItem('bankCards'));
 
-    if (!banks) {
-        banks = [];
-        localStorage.setItem('banks', JSON.stringify(banks));
+    if (!bankCards) {
+        bankCards = [];
+        localStorage.setItem('bankCards', JSON.stringify(bankCards));
     }
 
     // Update the view with stored values
-    updateBanksView(banks);
+    updateBankCardsView(bankCards);
 }
 
-function updateBanksView(banks) {
+function updateBankCardsView(bankCards) {
     const container = document.getElementById('bankCardsContainer');
     container.innerHTML = '';
 
-    banks.forEach((bank, index) => {
+    bankCards.forEach((bankCard, index) => {
         const cardItem = document.createElement('li');
         cardItem.className = 'card-item';
+        cardItem.addEventListener("click", () => showBankCardInfo(index));
         cardItem.innerHTML = `
-                    <div class="card-details">
-                        <h3>${bank.bankName}</h3>
-                        <p>Account: **** **** **** ${bank.accountNumber.slice(-4)}</p>
-                        <p>Expires: ${formatDate(bank.expiryDate)}</p>
+                    <div class="card-details" >
+                        <h5>${bankCard.bankCardName}</h5>
+                        <p><strong>Account:</strong> **** **** **** ${bankCard.accountNumber.slice(-4)}</p>
+                        <p><strong>Expires:</strong> ${bankCard.expiryDate}</p>
                     </div>
-                    <div class="info-btn" onclick="showBankInfo(${index})">
+                    <div class="info-btn">
                         <i class="fas fa-info"></i>
                     </div>
                 `;
@@ -139,109 +157,133 @@ function updateBanksView(banks) {
     });
 }
 
-function loadBankForm(index = -1) {
-    const banks = JSON.parse(localStorage.getItem('banks')) || [];
+function loadBankCardForm(index = -1) {
+    const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
 
-    if (index >= 0 && index < banks.length) {
-        // Editing existing bank
-        document.getElementById('bankFormTitle').textContent = 'Edit Bank Account';
-        document.getElementById('editBankIndex').value = index;
+    // account number input formatter
+    const accountNumberInput = document.getElementById("accountNumber");
+    if (accountNumberInput && !accountNumberInput.hasListener) {
+        accountNumberInput.addEventListener("input", function () {
+            let digits = this.value.replace(/\D/g, ""); // only numbers
 
-        const bank = banks[index];
-        document.getElementById('bankName').value = bank.bankName;
-        document.getElementById('accountNumber').value = bank.accountNumber;
-        document.getElementById('expiryDate').value = bank.expiryDate;
-        document.getElementById('cvv').value = bank.cvv;
+            if (digits.length > 16) digits = digits.substring(0, 16); // max 16
+            this.value = digits.replace(/(.{4})/g, "$1 ").trim(); // format xxxx xxxx xxxx xxxx
+
+        });
+        accountNumberInput.hasListener = true; // prevent double-binding
+    }
+
+    if (index >= 0 && index < bankCards.length) {
+        // Editing existing bankCard
+        document.getElementById('bankCardFormTitle').textContent = 'Edit Bank Card Account';
+        document.getElementById('editBankCardIndex').value = index;
+
+        const bankCard = bankCards[index];
+        document.getElementById('bankCardName').value = bankCard.bankCardName;
+        document.getElementById('accountNumber').value = bankCard.accountNumber;
+        document.getElementById('expiryDate').value = bankCard.expiryDate;
+        document.getElementById('cvv').value = bankCard.cvv;
     } else {
-        // Adding new bank
-        document.getElementById('bankFormTitle').textContent = 'Add New Bank Account';
-        document.getElementById('editBankIndex').value = -1;
+        // Adding new bankCard
+        document.getElementById('bankCardFormTitle').textContent = 'Add New Bank Card';
+        document.getElementById('editBankCardIndex').value = -1;
 
         // Reset form
-        document.getElementById('bankName').value = '';
+        document.getElementById('bankCardName').value = '';
         document.getElementById('accountNumber').value = '';
         document.getElementById('expiryDate').value = '';
         document.getElementById('cvv').value = '';
     }
 }
 
-function saveBank() {
-    const index = parseInt(document.getElementById('editBankIndex').value);
-    const bankName = document.getElementById('bankName').value;
+function saveBankCard() {
+    const index = parseInt(document.getElementById('editBankCardIndex').value);
+    const bankCardName = document.getElementById('bankCardName').value;
     const accountNumber = document.getElementById('accountNumber').value;
-    const expiryDate = document.getElementById('expiryDate').value;
-    const cvv = document.getElementById('cvv').value;
+    const expireInput = document.getElementById('expiryDate');
+    const cvv = document.getElementById('cvv').value; // regex pattern \D: any char not a digit g:global search
 
-    if (!bankName || !accountNumber || !expiryDate || !cvv) {
+    if (isNaN(cvv)) {
+        alert("CVV must be number digit only!");
+        return;
+    }
+
+    if (!formatDateMY(expireInput)) {
+        window.alert('Month must be between 01 and 12');
+        return;
+    }
+    const expiryDate = expireInput.value;
+
+    if (!bankCardName || !accountNumber || !expiryDate || !cvv) {
         alert('Please fill in all fields');
         return;
     }
 
-    const banks = JSON.parse(localStorage.getItem('banks')) || [];
-    const bankData = {
-        bankName,
+    const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+    const bankCardData = {
+        bankCardName,
         accountNumber,
         expiryDate,
         cvv
     };
 
-    if (index >= 0 && index < banks.length) {
-        // Update existing bank
-        banks[index] = bankData;
+    if (index >= 0 && index < bankCards.length) {
+        // Update existing bankCard
+        bankCards[index] = bankCardData;
     } else {
-        // Add new bank
-        banks.push(bankData);
+        // Add new bankCard
+        bankCards.push(bankCardData);
     }
 
     // Save to localStorage
-    localStorage.setItem('banks', JSON.stringify(banks));
+    localStorage.setItem('bankCards', JSON.stringify(bankCards));
 
     // Update the view
-    updateBanksView(banks);
+    updateBankCardsView(bankCards);
 
-    alert('Bank account saved successfully!');
+    alert('Bank Card account saved successfully!');
 
     // Close the popup
-    toggleForm('bank');
+    toggleForm('bankCard');
 }
 
-function showBankInfo(index) {
-    const banks = JSON.parse(localStorage.getItem('banks')) || [];
-    const bank = banks[index];
+function showBankCardInfo(index) {
+    const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+    const bankCard = bankCards[index];
 
-    if (!bank) return;
+    if (!bankCard) return;
 
     const popupDetails = document.getElementById('popupDetails');
     popupDetails.innerHTML = `
-                <div class="detail-item">
-                    <span class="detail-label">Bank Name:</span>
-                    <span class="detail-value">${bank.bankName}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">Bank Card Name:</span>
+                    <span class="col-7 detail-value">${bankCard.bankCardName}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Account Number:</span>
-                    <span class="detail-value">**** **** **** ${bank.accountNumber.slice(-4)}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3"">
+                    <span class="col-5 detail-label">Account Number:</span>
+                    <span class="col-7 detail-value">**** **** **** ${bankCard.accountNumber.slice(-4)}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Expiry Date:</span>
-                    <span class="detail-value">${formatDate(bank.expiryDate)}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3"">
+                    <span class="col-5 detail-label">Expiry Date:</span>
+                    <span class="col-7 detail-value">${bankCard.expiryDate}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">CVV:</span>
-                    <span class="detail-value">***</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3"">
+                    <span class="col-5 detail-label">CVV:</span>
+                    <span class="col-7 detail-value">***</span>
                 </div>
             `;
 
-    document.getElementById('detailsTitle').textContent = 'Bank Account Details';
+    document.getElementById('detailsTitle').textContent = 'Bank Card Details';
 
     // Set up the edit and remove buttons
     document.getElementById('popupEditBtn').onclick = function () {
         closeDetailsPopup();
-        toggleForm('bank');
-        loadBankForm(index);
+        toggleForm('bankCard');
+        loadBankCardForm(index);
     };
 
     document.getElementById('popupRemoveBtn').onclick = function () {
-        removeBank(index);
+        removeBankCard(index);
     };
 
     // Show the popup
@@ -249,14 +291,14 @@ function showBankInfo(index) {
     document.body.style.overflow = 'hidden';
 }
 
-function removeBank(index) {
-    if (confirm('Are you sure you want to remove this bank account?')) {
-        const banks = JSON.parse(localStorage.getItem('banks')) || [];
-        if (index >= 0 && index < banks.length) {
-            banks.splice(index, 1);
-            localStorage.setItem('banks', JSON.stringify(banks));
-            updateBanksView(banks);
-            alert('Bank account removed successfully!');
+function removeBankCard(index) {
+    if (confirm('Are you sure you want to remove this bank card account?')) {
+        const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+        if (index >= 0 && index < bankCards.length) {
+            bankCards.splice(index, 1);
+            localStorage.setItem('bankCards', JSON.stringify(bankCards));
+            updateBankCardsView(bankCards);
+            alert('Bank Card account removed successfully!');
         }
         closeDetailsPopup();
     }
@@ -282,13 +324,14 @@ function updateAddressesView(addresses) {
     addresses.forEach((address, index) => {
         const cardItem = document.createElement('li');
         cardItem.className = 'card-item';
+        cardItem.addEventListener("click", () => showAddressInfo(index));
         cardItem.innerHTML = `
                     <div class="card-details">
-                        <h3>${address.title}</h3>
+                        <h5>${address.title}</h5>
                         <p>${address.addressLine1}, ${address.city}</p>
-                        <p>Phone: ${address.phone}</p>
+                        <p><strong>Phone:<strong> ${address.phone}</p>
                     </div>
-                    <div class="info-btn" onclick="showAddressInfo(${index})">
+                    <div class="info-btn">
                         <i class="fas fa-info"></i>
                     </div>
                 `;
@@ -382,33 +425,33 @@ function showAddressInfo(index) {
 
     const popupDetails = document.getElementById('popupDetails');
     popupDetails.innerHTML = `
-                <div class="detail-item">
-                    <span class="detail-label">Title:</span>
-                    <span class="detail-value">${address.title}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">Title:</span>
+                    <span class="col-7 detail-value">${address.title}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Address Line 1:</span>
-                    <span class="detail-value">${address.addressLine1}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">Address Line 1:</span>
+                    <span class="col-7 detail-value">${address.addressLine1}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Address Line 2:</span>
-                    <span class="detail-value">${address.addressLine2 || 'N/A'}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">Address Line 2:</span>
+                    <span class="col-7 detail-value">${address.addressLine2 || 'N/A'}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">City:</span>
-                    <span class="detail-value">${address.city}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">City:</span>
+                    <span class="col-7 detail-value">${address.city}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">State:</span>
-                    <span class="detail-value">${address.state}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">State:</span>
+                    <span class="col-7 detail-value">${address.state}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Postal Code:</span>
-                    <span class="detail-value">${address.postalCode}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">Postal Code:</span>
+                    <span class="col-7 detail-value">${address.postalCode}</span>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Phone:</span>
-                    <span class="detail-value">${address.phone}</span>
+                <div class="detail-item d-flex justify-content-between align-items-center mb-3">
+                    <span class="col-5 detail-label">Phone:</span>
+                    <span class="col-7 detail-value">${address.phone}</span>
                 </div>
             `;
 
@@ -465,21 +508,67 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    if (newPassword !== confirmPassword) {
-        alert("New Password and Confirm Password do not match!");
-        return;
+    if (confirm("Are you sure you want to change your password?")) {
+        if (newPassword !== confirmPassword) {
+            alert("New Password and Confirm Password do not match!");
+            return;
+        } else {
+            alert("Password updated successfully!");
+            form.submit(); // <-- only submit if valid
+        }
     }
-
-    alert("Password updated successfully!");
-    form.submit(); // <-- only submit if valid
 });
 
 
 
 // UTILITY FUNCTIONS
-function formatDate(dateString) {
+function updateCountryLabel() {
+    const select = document.getElementById('editCountryCode');
+    const label = document.getElementById('countryLabel');
+    switch (select.value) {
+        case '+60':
+            label.textContent = 'Malaysia';
+            break;
+        case '+65':
+            label.textContent = 'Singapore';
+            break;
+        case '+86':
+            label.textContent = 'China';
+            break;
+        case 'other':
+            label.textContent = 'Other';
+            break;
+        default:
+            label.textContent = '';
+    }
+}
+
+function formatDateDMY(dateString) {
+    if (!dateString) return '';
     const date = new Date(dateString);
-    return `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+// Format and validate MM/YY for card expiry date
+function formatDateMY(input) {
+    let value = input.value.replace(/[^0-9]/g, '');
+    if (value.length > 4) value = value.slice(0, 4);
+    if (value.length >= 3) {
+        value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    input.value = value;
+
+    // Validate MM
+    if (value.length >= 2) {
+        const mm = parseInt(value.slice(0, 2), 10);
+        if (mm < 1 || mm > 12) {
+            return false;
+        }
+    }
+    return true;
 }
 
 function closeDetailsPopup() {
@@ -490,24 +579,24 @@ function closeDetailsPopup() {
 // Toggle form visibility
 function toggleForm(type) {
     const popupProfile = document.getElementById('popupFormProfile');
-    const popupBank = document.getElementById('popupFormBank');
+    const popupBankCard = document.getElementById('popupFormBankCard');
     const popupAddress = document.getElementById('popupFormAddress');
 
     if (type === 'profile') {
         popupProfile.classList.toggle('active');
-        // Close address and bank popup if open
+        // Close address and bankCard popup if open
         if (popupAddress.classList.contains('active')) {
             popupAddress.classList.remove('active');
         }
-        if (popupBank.classList.contains('active')) {
-            popupBank.classList.remove('active');
+        if (popupBankCard.classList.contains('active')) {
+            popupBankCard.classList.remove('active');
         }
 
         if (popupProfile.classList.contains('active')) {
             loadEditForm();
         }
-    } else if (type === 'bank') {
-        popupBank.classList.toggle('active');
+    } else if (type === 'bankCard') {
+        popupBankCard.classList.toggle('active');
         // Close profile and address popup if open
         if (popupAddress.classList.contains('active')) {
             popupAddress.classList.remove('active');
@@ -516,14 +605,14 @@ function toggleForm(type) {
             popupProfile.classList.remove('active');
         }
 
-        if (popupBank.classList.contains('active')) {
-            loadBankForm();
+        if (popupBankCard.classList.contains('active')) {
+            loadBankCardForm();
         }
     } else if (type === 'address') {
         popupAddress.classList.toggle('active');
         // Close profile and bank popup if open
-        if (popupBank.classList.contains('active')) {
-            popupBank.classList.remove('active');
+        if (popupBankCard.classList.contains('active')) {
+            popupBankCard.classList.remove('active');
         }
         if (popupProfile.classList.contains('active')) {
             popupProfile.classList.remove('active');
@@ -535,7 +624,7 @@ function toggleForm(type) {
     }
 
     // Prevent body from scrolling when any popup is open
-    if (popupProfile.classList.contains('active') || popupBank.classList.contains('active') || popupAddress.classList.contains('active')) {
+    if (popupProfile.classList.contains('active') || popupBankCard.classList.contains('active') || popupAddress.classList.contains('active')) {
         document.body.style.overflow = 'hidden';
     } else {
         document.body.style.overflow = 'auto';
@@ -549,9 +638,9 @@ document.getElementById('popupFormProfile').addEventListener('click', function (
     }
 });
 
-document.getElementById('popupFormBank').addEventListener('click', function (e) {
+document.getElementById('popupFormBankCard').addEventListener('click', function (e) {
     if (e.target === this) {
-        toggleForm('bank');
+        toggleForm('bankCard');
     }
 });
 
