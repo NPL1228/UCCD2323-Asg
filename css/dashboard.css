@@ -383,3 +383,75 @@ button {
 .info-btn:hover {
     background: #2980b9;
 }
+
+footer { 
+    font-family: 'Judson', sans-serif;
+    position: relative;
+    background-color: #F6CA93;
+    color: black;
+    padding: 40px;
+    height: 300px;
+    font-size: 20px;
+    margin-top: 111px;
+}
+
+.footMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 80px;
+
+}
+
+.footLogo {
+    position: relative;
+    left: 50px;
+}
+
+footer h4 {
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 30px !important;
+}
+
+footer li {
+    margin-bottom: 2px !important; 
+}
+
+footer a {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+footer a:hover {
+    transform: scale(1.2);
+}
+
+#contact img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.footInfo {
+    flex: 1;
+    width: 25%;
+}
+
+.footCopy {
+    position: absolute;
+    bottom: 10px;
+    left: 580px;
+}
