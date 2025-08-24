@@ -1,0 +1,26 @@
+.aboutUsMain {
+    max-width: 800px; /* Limit width for better readability */
+    text-align: center; /* Center text */
+    margin: 20px auto; /* Center the section */
+    font-size: 20px;
+}
+
+.aboutUs h1 {
+    margin-bottom: 30px;
+    font-size: 40px;
+}
+
+.aboutUs h2 {
+    margin-bottom: 20px;
+}
+.subAboutUs {
+    display: flex;
+    margin: 20px;
+}
+
+.aboutUsText {
+    background-color: #ffdaad;
+    border-radius: 10px;
+    padding: 100px;
+    font-size: 20px;
+}
