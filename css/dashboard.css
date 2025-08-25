@@ -32,6 +32,15 @@ body {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+.filterSection {
+    position: relative;
+    margin-top: 100px;
+    background: #E3D9C2;
+    padding: 20px;
+    transition: transform 0.6s ease;
+    height: 600px;
+}
+
 .nav-pills li a {
     color: #000000;
 }
