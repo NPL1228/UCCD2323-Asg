@@ -22,36 +22,53 @@ navLinks.forEach(link => {
     });
 });
 
-// Initialize the data when the page loads
-document.addEventListener('DOMContentLoaded', initializeData);
+function getCookie(name) {
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let c of ca) {
+        c = c.trim();
+        if (c.indexOf(cname) === 0) {
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+document.addEventListener('DOMContentLoaded', fetchData);
 
 // Initialize all data from localStorage
-function initializeData() {
-    initializeProfile();
-    initializeBanksCard();
-    initializeAddresses();
+function fetchData() {
+    fetchProfile();
+    fetchBanksCard();
+    fetchAddresses();
 }
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+const loggedInEmail = getCookie("loggedInUser");
+
+// Find current logged-in user
+let user = users.find(u => u.email === loggedInEmail);
 
 // PROFILE FUNCTIONS
-function initializeProfile() {
-    let profileData = JSON.parse(localStorage.getItem('profileData'));
+function fetchProfile() {
+    // Ensure defaults if missing (only fill empty values, don’t overwrite)
+    if (!user.username) user.username = 'user';
+    if (!user.email) user.email = loggedInEmail || '';
+    if (!user.countryCode) user.countryCode = '+60';
+    if (!user.phone) user.phone = '';
+    if (!user.gender) user.gender = 'male';
+    if (!user.dob) user.dob = '';
 
-    if (!profileData) {
-        // Set default values if no data exists
-        profileData = {
-            username: 'user',
-            email: '',
-            countryCode: '+60',
-            phone: '',
-            gender: 'male',
-            dob: ''
-        };
-        localStorage.setItem('profileData', JSON.stringify(profileData));
-    }
+    // Save back updated users array
+    localStorage.setItem("users", JSON.stringify(users));
 
-    // Update the view with stored values
-    updateProfileView(profileData);
+    // Update the view with the current user's data
+    updateProfileView(user);
 }
+
+
 
 function updateProfileView(profileData) {
     document.getElementById('username').textContent = profileData.username;
@@ -63,21 +80,18 @@ function updateProfileView(profileData) {
 }
 
 function loadEditForm() {
-    const profileData = JSON.parse(localStorage.getItem('profileData'));
+    document.getElementById('editUsername').value = user.username;
+    document.getElementById('editEmail').value = user.email;
+    document.getElementById('editCountryCode').value = user.countryCode;
+    document.getElementById('editPhone').value = user.phone;
+    document.getElementById('editDob').value = user.dob;
 
-    if (profileData) {
-        document.getElementById('editUsername').value = profileData.username;
-        document.getElementById('editEmail').value = profileData.email;
-        document.getElementById('editCountryCode').value = profileData.countryCode;
-        document.getElementById('editPhone').value = profileData.phone;
-        document.getElementById('editDob').value = profileData.dob;
-
-        // Set gender radio button
-        document.querySelectorAll('input[name="editGender"]').forEach(radio => {
-            radio.checked = (radio.value === profileData.gender);
-        });
-    }
+    // Set gender radio button
+    document.querySelectorAll('input[name="editGender"]').forEach(radio => {
+        radio.checked = (radio.value === user.gender);
+    });
 }
+
 
 function saveProfile() {
     const username = document.getElementById('editUsername').value;
@@ -109,7 +123,7 @@ function saveProfile() {
     };
 
     // Save to localStorage
-    localStorage.setItem('profileData', JSON.stringify(profileData));
+    localStorage.setItem('users', JSON.stringify(profileData));
 
     // Update the view with new values
     updateProfileView(profileData);
@@ -124,11 +138,11 @@ function saveProfile() {
 
 // BANK FUNCTIONS
 function initializeBanksCard() {
-    let bankCards = JSON.parse(localStorage.getItem('bankCards'));
+    let bankCards = JSON.parse(localStorage.getItem('users'));
 
     if (!bankCards) {
         bankCards = [];
-        localStorage.setItem('bankCards', JSON.stringify(bankCards));
+        localStorage.setItem('users', JSON.stringify(bankCards));
     }
 
     // Update the view with stored values
@@ -158,7 +172,7 @@ function updateBankCardsView(bankCards) {
 }
 
 function loadBankCardForm(index = -1) {
-    const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+    const bankCards = JSON.parse(localStorage.getItem('users')) || [];
 
     // account number input formatter
     const accountNumberInput = document.getElementById("accountNumber");
@@ -219,7 +233,7 @@ function saveBankCard() {
         return;
     }
 
-    const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+    const bankCards = JSON.parse(localStorage.getItem('users')) || [];
     const bankCardData = {
         bankCardName,
         accountNumber,
@@ -236,7 +250,7 @@ function saveBankCard() {
     }
 
     // Save to localStorage
-    localStorage.setItem('bankCards', JSON.stringify(bankCards));
+    localStorage.setItem('users', JSON.stringify(bankCards));
 
     // Update the view
     updateBankCardsView(bankCards);
@@ -248,7 +262,7 @@ function saveBankCard() {
 }
 
 function showBankCardInfo(index) {
-    const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+    const bankCards = JSON.parse(localStorage.getItem('users')) || [];
     const bankCard = bankCards[index];
 
     if (!bankCard) return;
@@ -293,10 +307,10 @@ function showBankCardInfo(index) {
 
 function removeBankCard(index) {
     if (confirm('Are you sure you want to remove this bank card account?')) {
-        const bankCards = JSON.parse(localStorage.getItem('bankCards')) || [];
+        const bankCards = JSON.parse(localStorage.getItem('users')) || [];
         if (index >= 0 && index < bankCards.length) {
             bankCards.splice(index, 1);
-            localStorage.setItem('bankCards', JSON.stringify(bankCards));
+            localStorage.setItem('users', JSON.stringify(bankCards));
             updateBankCardsView(bankCards);
             alert('Bank Card account removed successfully!');
         }
@@ -306,11 +320,11 @@ function removeBankCard(index) {
 
 // ADDRESS FUNCTIONS
 function initializeAddresses() {
-    let addresses = JSON.parse(localStorage.getItem('addresses'));
+    let addresses = JSON.parse(localStorage.getItem('users'));
 
     if (!addresses) {
         addresses = [];
-        localStorage.setItem('addresses', JSON.stringify(addresses));
+        localStorage.setItem('users', JSON.stringify(addresses));
     }
 
     // Update the view with stored values
@@ -340,7 +354,7 @@ function updateAddressesView(addresses) {
 }
 
 function loadAddressForm(index = -1) {
-    const addresses = JSON.parse(localStorage.getItem('addresses')) || [];
+    const addresses = JSON.parse(localStorage.getItem('users')) || [];
 
     if (index >= 0 && index < addresses.length) {
         // Editing existing address
@@ -386,7 +400,7 @@ function saveAddress() {
         return;
     }
 
-    const addresses = JSON.parse(localStorage.getItem('addresses')) || [];
+    const addresses = JSON.parse(localStorage.getItem('users')) || [];
     const addressData = {
         title,
         addressLine1: address1,
@@ -406,7 +420,7 @@ function saveAddress() {
     }
 
     // Save to localStorage
-    localStorage.setItem('addresses', JSON.stringify(addresses));
+    localStorage.setItem('users', JSON.stringify(addresses));
 
     // Update the view
     updateAddressesView(addresses);
@@ -418,7 +432,7 @@ function saveAddress() {
 }
 
 function showAddressInfo(index) {
-    const addresses = JSON.parse(localStorage.getItem('addresses')) || [];
+    const addresses = JSON.parse(localStorage.getItem('users')) || [];
     const address = addresses[index];
 
     if (!address) return;
@@ -475,10 +489,10 @@ function showAddressInfo(index) {
 
 function removeAddress(index) {
     if (confirm('Are you sure you want to remove this address?')) {
-        const addresses = JSON.parse(localStorage.getItem('addresses')) || [];
+        const addresses = JSON.parse(localStorage.getItem('users')) || [];
         if (index >= 0 && index < addresses.length) {
             addresses.splice(index, 1);
-            localStorage.setItem('addresses', JSON.stringify(addresses));
+            localStorage.setItem('users', JSON.stringify(addresses));
             updateAddressesView(addresses);
             alert('Address removed successfully!');
         }
